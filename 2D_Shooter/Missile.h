@@ -1,12 +1,11 @@
 #pragma once
 #include "GameObject.h"
-class Missile :
+class GameObject :
 	public GameObject
 {
 public:
-	Missile();
-	~Missile();
-	void HandleEvent(SDL_Event *event);
+	GameObject();
+	~GameObject();
 	void UpdatePosition();
 };
 

@@ -1,17 +1,17 @@
 #include "Missile.h"
 
-Missile::Missile()
+GameObject::GameObject()
 {
 
 }
 
 
 
-void Missile::UpdatePosition()
+void GameObject::UpdatePosition()
 {
 	x = x + v_x; y = y + v_y;
 }
 
-Missile::~Missile()
+GameObject::~GameObject()
 {
 }

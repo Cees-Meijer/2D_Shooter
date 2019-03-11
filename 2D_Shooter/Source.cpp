@@ -5,8 +5,7 @@
 #include <stdio.h>
 #include <chrono>
 #include "Player.h"
-#include "Missile.h"
-#include "Missiles.h"
+#include "GameObjects.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 768;
@@ -17,7 +16,6 @@ int main(int argc, char* args[]) {
 	SDL_Renderer *renderer=NULL;
 	SDL_Texture *texture=NULL;
 	SDL_Event event;
-	SDL_Rect r;
 
 	using Clock = std::chrono::steady_clock;
 	using std::chrono::time_point;
@@ -46,7 +44,7 @@ int main(int argc, char* args[]) {
 	char player_filename[] = { "images\\AWAC.png" };	
 	player->LoadTexture(player_filename);
 	player->x = SCREEN_WIDTH/2; player->y = SCREEN_HEIGHT- player->height;
-	Missiles *missiles = new Missiles();
+	GameObjects *missiles = new GameObjects();
 
 	GameObject *background = new GameObject();
 	background->Init(renderer);
@@ -63,10 +61,8 @@ int main(int argc, char* args[]) {
 			break;
 		}
 		player->HandleEvent(&event);
-		if (player->shoot == player->FIRE1 ) { missiles->Add(player, 0, -8); player->shoot = player->SHOT_HANDLED; }
+		if (player->shoot == player->FIRE1 ) { missiles->AddMissile(player, 0, -8); player->shoot = player->SHOT_HANDLED; }
 		player->UpdatePosition();
-		//SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-		//SDL_RenderClear(renderer);	
 		//We have a screen filling background, so there is no need to clear the background
 		SDL_RenderCopy(renderer, background->texture, NULL, NULL);
 		missiles->UpdateAndDraw();		

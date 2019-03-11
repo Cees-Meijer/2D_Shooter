@@ -16,6 +16,11 @@
 		SDL_GetRendererOutputSize(renderer, &screenwidth, &screenheight);
 	}
 	
+	void GameObject::UpdatePosition()
+	{
+		x = x + v_x; y = y + v_y;
+	}
+
 	/// <summary>
 	/// Loads the texture from a .png or .bmp file.
 	/// </summary>

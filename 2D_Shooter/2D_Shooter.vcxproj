@@ -129,8 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Missile.cpp" />
-    <ClCompile Include="Missiles.cpp" />
+    <ClCompile Include="GameObjects.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
@@ -139,8 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Missile.h" />
-    <ClInclude Include="Missiles.h" />
+    <ClInclude Include="GameObjects.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Source.h" />
   </ItemGroup>
