@@ -44,7 +44,7 @@ int main(int argc, char* args[]) {
 	char player_filename[] = { "images\\AWAC.png" };	
 	player->LoadTexture(player_filename);
 	player->x = SCREEN_WIDTH/2; player->y = SCREEN_HEIGHT- player->height;
-	GameObjects *missiles = new GameObjects();
+	GameObjects *objects = new GameObjects();
 
 	GameObject *background = new GameObject();
 	background->Init(renderer);
@@ -53,19 +53,26 @@ int main(int argc, char* args[]) {
 
 	time_point<Clock> start = Clock::now();
 	unsigned long frame_counter = 0;
+	int fish_interval =( rand() % 500) + 200; // between 2 and 7 seconds
+	int fish_height = 0; int fish_speed = -1;
 	while (1) 
 		{
 		SDL_PollEvent(&event);
-		if (event.type == SDL_QUIT)
-		{
-			break;
-		}
+		if (event.type == SDL_QUIT){break;}
+		
+		if (frame_counter % fish_interval == 0) 
+		 {
+			fish_speed = rand() % 5 * -1;
+			fish_height = (rand() % 400) + 200;
+			objects->AddFish(SCREEN_WIDTH, fish_height, fish_speed, 0, renderer);
+		    fish_interval = (rand() % 500) + 200;
+ 		}
 		player->HandleEvent(&event);
-		if (player->shoot == player->FIRE1 ) { missiles->AddMissile(player, 0, -8); player->shoot = player->SHOT_HANDLED; }
+		if (player->shoot == player->FIRE1 ) { objects->AddMissile(player, 0, -8); player->shoot = player->SHOT_HANDLED; }
 		player->UpdatePosition();
 		//We have a screen filling background, so there is no need to clear the background
 		SDL_RenderCopy(renderer, background->texture, NULL, NULL);
-		missiles->UpdateAndDraw();		
+		objects->UpdateAndDraw();
 		player->Draw();
 		SDL_RenderPresent(renderer);
 		SDL_Delay(9); // About 100 frames per second
