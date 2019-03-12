@@ -16,12 +16,6 @@ int main(int argc, char* args[]) {
 	SDL_Renderer *renderer=NULL;
 	SDL_Texture *texture=NULL;
 	SDL_Event event;
-
-	using Clock = std::chrono::steady_clock;
-	using std::chrono::time_point;
-	using std::chrono::duration_cast;
-	using std::chrono::milliseconds;
-	using namespace std::literals::chrono_literals;
 	
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		printf("Could not initialize SDL. SDL_Error: %s\n", SDL_GetError());
@@ -51,15 +45,19 @@ int main(int argc, char* args[]) {
 	char bg_filename[] = { "images\\Seafloor.bmp" };
 	background->LoadTexture(bg_filename);
 
-	time_point<Clock> start = Clock::now();
+	Uint32 start_ticks = SDL_GetTicks();
+	Uint32 frame_ticks = SDL_GetTicks();
 	unsigned long frame_counter = 0;
-	int fish_interval =( rand() % 500) + 200; // between 2 and 7 seconds
+	int fish_interval =( rand() % 100) + 100; // between 1 and 2 seconds
 	int fish_height = 0; int fish_speed = -1;
 	while (1) 
 		{
+		
+    	Uint32 diff = SDL_GetTicks() - frame_ticks;
+		if (diff < 9) {SDL_Delay(1);  continue; }
+		frame_ticks = SDL_GetTicks();
 		SDL_PollEvent(&event);
 		if (event.type == SDL_QUIT){break;}
-		
 		if (frame_counter % fish_interval == 0) 
 		 {
 			fish_speed = rand() % 5 * -1;
@@ -75,14 +73,13 @@ int main(int argc, char* args[]) {
 		objects->UpdateAndDraw();
 		player->Draw();
 		SDL_RenderPresent(renderer);
-		SDL_Delay(9); // About 100 frames per second
+		
 		frame_counter++;
 	    }
-
-		time_point<Clock> end = Clock::now();
-		milliseconds diff = duration_cast<milliseconds>(end - start);
-		double fps = (double)frame_counter / (double)diff.count() * 1000;
-		std::cout << frame_counter << " frames rendered in " << diff.count() << " ms ("<< fps << " fps)" << std::endl;
+	    Uint32 end_ticks = SDL_GetTicks();
+		Uint32 diff = end_ticks - start_ticks;
+		double fps = (double)frame_counter / (double)diff * 1000;
+		std::cout << frame_counter << " frames rendered in " << diff << " ms ("<< fps << " fps)" << std::endl;
 
 	SDL_DestroyRenderer(renderer);
 
@@ -91,4 +88,19 @@ int main(int argc, char* args[]) {
 	player->~Player();
 	return 0;
 }
+
+struct Timer
+{
+	Uint64 previous_ticks{};
+	float elapsed_seconds{};
+
+	void tick()
+	{
+		const Uint64 current_ticks{ SDL_GetPerformanceCounter() };
+		const Uint64 delta{ current_ticks - previous_ticks };
+		previous_ticks = current_ticks;
+		static const Uint64 TICKS_PER_SECOND{ SDL_GetPerformanceFrequency() };
+		elapsed_seconds = delta / static_cast<float>(TICKS_PER_SECOND);
+	}
+};
 
