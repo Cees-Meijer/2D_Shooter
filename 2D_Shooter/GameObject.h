@@ -18,6 +18,7 @@ public:
 	int screenwidth, screenheight;
 	bool IsWithinScreenBounds(int x, int y);
 
+
 	SDL_Renderer * renderer;
 	SDL_Texture * texture;
 };

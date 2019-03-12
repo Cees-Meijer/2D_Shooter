@@ -1,4 +1,4 @@
-#include "Source.h"
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
@@ -6,9 +6,7 @@
 #include <chrono>
 #include "Player.h"
 #include "GameObjects.h"
-
-const int SCREEN_WIDTH = 1024;
-const int SCREEN_HEIGHT = 768;
+#include "Source.h"
 
 int main(int argc, char* args[]) {
 	SDL_Window* window = NULL;
@@ -16,8 +14,10 @@ int main(int argc, char* args[]) {
 	SDL_Renderer *renderer=NULL;
 	SDL_Texture *texture=NULL;
 	SDL_Event event;
+	//The surface contained by the window
+	SDL_Surface* gScreenSurface = NULL;
 	
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+	if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_TIMER) < 0) {
 		printf("Could not initialize SDL. SDL_Error: %s\n", SDL_GetError());
 		return -1;
 	}
@@ -52,9 +52,8 @@ int main(int argc, char* args[]) {
 	int fish_height = 0; int fish_speed = -1;
 	while (1) 
 		{
-		
     	Uint32 diff = SDL_GetTicks() - frame_ticks;
-		if (diff < 9) {SDL_Delay(1);  continue; }
+		if (diff < 9) {SDL_Delay(1);  continue; } // 100 Frames per second
 		frame_ticks = SDL_GetTicks();
 		SDL_PollEvent(&event);
 		if (event.type == SDL_QUIT){break;}
