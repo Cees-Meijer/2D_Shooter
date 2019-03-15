@@ -132,6 +132,8 @@
     <ClCompile Include="GameObjects.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="SineWave.cpp" />
+    <ClCompile Include="Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -141,6 +143,8 @@
     <ClInclude Include="GameObjects.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Source.h" />
+    <ClInclude Include="SineWave.h" />
+    <ClInclude Include="Wave.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\AWAC.png">

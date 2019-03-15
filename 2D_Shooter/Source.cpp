@@ -6,6 +6,7 @@
 #include <chrono>
 #include "Player.h"
 #include "GameObjects.h"
+#include "Wave.h"
 #include "Source.h"
 
 int main(int argc, char* args[]) {
@@ -45,6 +46,12 @@ int main(int argc, char* args[]) {
 	char bg_filename[] = { "images\\Seafloor.bmp" };
 	background->LoadTexture(bg_filename);
 
+	Wave *wave = new Wave();
+	wave->Init(renderer);
+	char wave_filename[] = { "images\\Wave3.png" };
+	wave->LoadTexture(wave_filename);
+	wave->x = -1024; wave->y = 55;
+
 	Uint32 start_ticks = SDL_GetTicks();
 	Uint32 frame_ticks = SDL_GetTicks();
 	unsigned long frame_counter = 0;
@@ -69,6 +76,8 @@ int main(int argc, char* args[]) {
 		player->UpdatePosition();
 		//We have a screen filling background, so there is no need to clear the background
 		SDL_RenderCopy(renderer, background->texture, NULL, NULL);
+		wave->UpdatePosition();
+		wave->Draw();
 		objects->UpdateAndDraw();
 		player->Draw();
 		SDL_RenderPresent(renderer);
