@@ -76,8 +76,7 @@ int main(int argc, char* args[]) {
 		player->UpdatePosition();
 		//We have a screen filling background, so there is no need to clear the background
 		SDL_RenderCopy(renderer, background->texture, NULL, NULL);
-		wave->UpdatePosition();
-		wave->Draw();
+		wave->UpdateAndDraw();
 		objects->UpdateAndDraw();
 		player->Draw();
 		SDL_RenderPresent(renderer);
@@ -94,6 +93,7 @@ int main(int argc, char* args[]) {
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 	player->~Player();
+	wave->~Wave();
 	return 0;
 }
 

@@ -14,10 +14,12 @@
 		width = 0; height = 0;
 		renderer = R;
 		SDL_GetRendererOutputSize(renderer, &screenwidth, &screenheight);
+
 	}
 	
 	void GameObject::UpdatePosition()
 	{
+
 		x = x + v_x; y = y + v_y;
 	}
 

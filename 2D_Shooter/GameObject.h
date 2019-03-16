@@ -1,6 +1,8 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
+#include "source.h"
+
 class GameObject
 {
 public:
