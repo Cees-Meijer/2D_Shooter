@@ -1,4 +1,6 @@
 #include "GameObject.h"
+#include "gameobjects.h"
+#include "Source.h"
 #include <SDL.h>
 
 
@@ -44,6 +46,14 @@
 		dest.w = width;
 		dest.h = height;
 		SDL_RenderCopy(renderer, texture, NULL, &dest);
+
+#ifdef SHOW_BOUNDING_BOX
+		SDL_Rect bounding_box;
+		bounding_box.x =( (x+width/2) /GRID_SPACING) * GRID_SPACING ; bounding_box.y = ((y+height/2)/GRID_SPACING)*GRID_SPACING ;
+		bounding_box.w = GRID_SPACING; bounding_box.h = GRID_SPACING;
+		SDL_RenderDrawRect(renderer,&bounding_box);
+		
+#endif
 		return true;
 	}
 	///<summary>Check if the object is within the bounds of the renderer screen. Boundaries were set in the 'Init' function.</summary>

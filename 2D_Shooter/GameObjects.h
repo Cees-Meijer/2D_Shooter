@@ -4,7 +4,7 @@
 #include "GameObject.h"
 #include "player.h"
 
-#define GRID_SPACING 32
+#define GRID_SPACING 64
 class GameObjects
 {
 public:

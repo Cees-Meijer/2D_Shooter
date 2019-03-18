@@ -52,11 +52,14 @@ void GameObjects::UpdateAndDraw()
 	if (objects_list.size() == 0) { return; }
 	for (auto const& object : objects_list)
 	{
-		int X =object->x / GRID_SPACING; int Y = object->y / GRID_SPACING;
+		int X = (object->x + object->height / 2) / GRID_SPACING; int Y = (object->y + object->height/2) / GRID_SPACING;
+		//int Y_Right = (object->y + object->width) / GRID_SPACING;
+
 		GOArray[X][Y] = nullptr;
 		object->UpdatePosition();
-		X = object->x / GRID_SPACING; Y = object->y / GRID_SPACING;
-		if (object->Type == object->MISSILE1) { printf("%d,%d\r\n", X, Y); }
+		 X = (object->x + object->height / 2) / GRID_SPACING;  Y = (object->y + object->height / 2) / GRID_SPACING;
+
+		//if (object->Type == object->MISSILE1) { printf("%d,%d\r\n", X, Y); }
 		if (GOArray[X][Y] != nullptr && GOArray[X][Y] != object)
 		{
 			printf("Collision!");
