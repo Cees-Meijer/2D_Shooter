@@ -1,0 +1,2 @@
+# 2D_Shooter
+2D shooter game. Mainly an effort to learn the SDL2 framework, basic game programming and to refresh my C++ skills. Ofcourse I take a lot from all the excellent howtos and guides on the web, but I try to work out all the basic stuff myself (movement, keep track of all objects on the screen, collision detection etc.). So the code will probably not be very optimal but it will work. ( I hope)
