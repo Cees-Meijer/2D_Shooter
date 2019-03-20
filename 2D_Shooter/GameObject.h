@@ -19,6 +19,7 @@ public:
 	int width, height;
 	int screenwidth, screenheight;
 	bool IsWithinScreenBounds(int x, int y);
+	bool Collision(GameObject* other_object);
 
 
 	SDL_Renderer * renderer;

@@ -73,7 +73,7 @@ int main(int argc, char* args[]) {
 			fish_height = rnd * GRID_SPACING + GRID_SPACING/2  + 100;
 			objects->AddFish(SCREEN_WIDTH, fish_height, fish_speed, 0, renderer);
 		    fish_interval = (rand() % 500) + 200;
-			printf("Fish: rnd=%d, y=%d, spd=%d\r\n",rnd, fish_height, fish_speed);
+			//printf("Fish: rnd=%d, y=%d, spd=%d\r\n",rnd, fish_height, fish_speed);
  		}
 		player->HandleEvent(&event);
 		if (player->shoot == player->FIRE1 ) { objects->AddMissile(player, 0, -8); player->shoot = player->SHOT_HANDLED; }

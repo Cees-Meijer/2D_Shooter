@@ -18,6 +18,22 @@
 		SDL_GetRendererOutputSize(renderer, &screenwidth, &screenheight);
 
 	}
+	/// Check if this game object collides with another gameobject by check for overlap on the bounding box.
+	bool GameObject::Collision(GameObject* other_object)
+	{
+     if(x < other_object->x + other_object->width &&
+        x + width > other_object->x &&
+        y < other_object->y + other_object->height &&
+        y + height > other_object->y)
+        {
+         printf("Collision !");
+		 return true;
+        }
+	 return false;
+	}
+
+
+
 	
 	void GameObject::UpdatePosition()
 	{
@@ -52,7 +68,6 @@
 		bounding_box.x =( (x+width/2) /GRID_SPACING) * GRID_SPACING ; bounding_box.y = ((y+height/2)/GRID_SPACING)*GRID_SPACING ;
 		bounding_box.w = GRID_SPACING; bounding_box.h = GRID_SPACING;
 		SDL_RenderDrawRect(renderer,&bounding_box);
-		
 #endif
 		return true;
 	}
