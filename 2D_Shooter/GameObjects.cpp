@@ -6,6 +6,7 @@ GameObjects::GameObjects()
 {
 	objects_list.clear();
 	objects_delete_list.clear();
+	
 	for (int X = 0; X < SCREEN_WIDTH ; X++)
 	{
 		for (int Y = 0; Y < SCREEN_HEIGHT; Y++)

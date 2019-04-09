@@ -4,7 +4,14 @@
 #include <SDL.h>
 
 
-	GameObject::GameObject() {}
+    GameObject::GameObject() {
+		screenheight = 0; screenwidth = 0;
+		width = 0; height = 0;
+		renderer = nullptr; texture = nullptr;
+		v_x = 0; v_y = 0;
+		x = 0; y = 0;
+		Type = type::MISSILE1;
+	}
 	GameObject::~GameObject(){}
 	
 	///<summary>Intialise the Game Object. Set position and velocity to 0. Set the Renderer and store the screensizes </summary>

@@ -16,7 +16,7 @@ public:
 	void AddFish(int x, int y,int V_X, int V_Y, SDL_Renderer *renderer);
 	void Remove(GameObject* M);
 	void UpdateAndDraw();
-	GameObject* GOArray[SCREEN_WIDTH ][SCREEN_HEIGHT];
+	GameObject* GOArray[SCREEN_WIDTH][SCREEN_HEIGHT] = { 0 };
 
 
 };
