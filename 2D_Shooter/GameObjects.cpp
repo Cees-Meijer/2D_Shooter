@@ -7,6 +7,8 @@ GameObjects::GameObjects()
 	objects_list.clear();
 	objects_delete_list.clear();
 	
+	filenameTable[0] = string("images\\kingfish_2_left.png");
+	
 	for (int X = 0; X < SCREEN_WIDTH ; X++)
 	{
 		for (int Y = 0; Y < SCREEN_HEIGHT; Y++)

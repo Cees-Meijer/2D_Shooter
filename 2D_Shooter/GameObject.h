@@ -8,7 +8,7 @@ class GameObject
 public:
 	GameObject();
 	~GameObject();
-	enum type { MISSILE1,MISSILE2,FISH1,FISH2 };
+	enum type { FISH1,FISH2,MISSILE1,MISSILE2,SUBMARINE };
 	type Type;
 	void UpdatePosition();
 	void Init(SDL_Renderer *R);
