@@ -8,7 +8,7 @@
 #include "player.h"
 using namespace std;
 
-#define GRID_SPACING 64
+constexpr auto GRID_SPACING = 64;
 class GameObjects
 {
 public:
