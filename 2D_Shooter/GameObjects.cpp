@@ -45,6 +45,7 @@ void GameObjects::AddMissile(Player * player,int V_X, int V_Y) {
 	objects_list.push_back(GO);
 }
 
+///<summary>Remove by adding the object to remove to a list so we can remove them all in one go at the end.</summary>
 void GameObjects::Remove(GameObject* M)
 {
 	objects_delete_list.push_back(M);

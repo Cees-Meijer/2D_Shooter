@@ -25,8 +25,7 @@
 		SDL_GetRendererOutputSize(renderer, &screenwidth, &screenheight);
 
 	}
-	/// Check if this game object collides with another gameobject by check for overlap on the bounding box.
-	//
+	///<summary> Check if this game object collides with another gameobject by check for overlap on the bounding box.</summary>
 	bool GameObject::Collision(GameObject* other_object)
 	{
      if(x < other_object->x + other_object->width &&
